@@ -1,76 +1,92 @@
 (function() {
-  function ShoppableVPAID() {
-    var slot, videoSlot, eventsCallbacks = {}, state = "loading";
+    function VPAIDCreative() {
+        this.slot = null;
+        this.videoSlot = null;
+        this.events = {};
+        this.isLinear = true;
+        this.adVolume = 1.0;
+    }
 
-    this.handshakeVersion = function(version) {
-      return "2.0"; // VPAID spec version
+    // === ОБЯЗАТЕЛЬНЫЕ МЕТОДЫ API ===
+    VPAIDCreative.prototype.handshakeVersion = function(version) {
+        return "2.0";
     };
 
-    this.initAd = function(width, height, viewMode, desiredBitrate, creativeData, environmentVars) {
-      slot = environmentVars.slot;
-      videoSlot = environmentVars.videoSlot;
+    VPAIDCreative.prototype.initAd = function(width, height, viewMode, desiredBitrate, creativeData, environmentVars) {
+        this.slot = environmentVars.slot;
+        this.videoSlot = environmentVars.videoSlot;
 
-      if (videoSlot) {
-        videoSlot.src = "https://content.hybrid.ai/mraid/shoppable_test/Lifestyle_30.mp4";
-      }
+        // Простейший оверлей
+        var overlay = document.createElement("div");
+        overlay.style.position = "absolute";
+        overlay.style.left = "20px";
+        overlay.style.bottom = "20px";
+        overlay.style.width = "300px";
+        overlay.style.height = "100px";
+        overlay.style.background = "rgba(0,0,0,0.6)";
+        overlay.style.color = "#fff";
+        overlay.style.padding = "10px";
+        overlay.innerHTML = "<button style='font-size:16px;padding:8px 12px;'>Купить товар</button>";
 
-      state = "initialized";
-      if (eventsCallbacks["AdLoaded"]) eventsCallbacks["AdLoaded"]();
+        this.slot.appendChild(overlay);
+
+        this._trigger("AdLoaded");
     };
 
-    this.startAd = function() {
-      if (videoSlot && videoSlot.play) {
-        videoSlot.play();
-      }
-      state = "playing";
+    VPAIDCreative.prototype.startAd = function() {
+        this._trigger("AdStarted");
+    };
 
-      // Демонстрация: через 3 сек добавляем карточку товара
-      setTimeout(function() {
-        if (slot) {
-          var div = document.createElement("div");
-          div.innerHTML = '<div style="position:absolute;top:10%;left:10%;background:white;padding:10px;border:2px solid #000;">' +
-            '<img src="https://content.hybrid.ai/mraid/shoppable_test/product1.jpg" width="120"/><br/>' +
-            '<button onclick="window.open(\'https://shop.example/product1\')">Купить</button></div>';
-          slot.appendChild(div);
+    VPAIDCreative.prototype.stopAd = function() {
+        this._trigger("AdStopped");
+    };
+
+    VPAIDCreative.prototype.resizeAd = function(width, height, viewMode) {
+        this._trigger("AdSizeChange");
+    };
+
+    VPAIDCreative.prototype.pauseAd = function() {
+        this._trigger("AdPaused");
+    };
+
+    VPAIDCreative.prototype.resumeAd = function() {
+        this._trigger("AdPlaying");
+    };
+
+    VPAIDCreative.prototype.expandAd = function() {
+        this._trigger("AdExpanded");
+    };
+
+    VPAIDCreative.prototype.collapseAd = function() {
+        this._trigger("AdCollapsed");
+    };
+
+    // === EVENTS ===
+    VPAIDCreative.prototype.subscribe = function(callback, eventName, context) {
+        this.events[eventName] = callback.bind(context);
+    };
+
+    VPAIDCreative.prototype.unsubscribe = function(eventName) {
+        delete this.events[eventName];
+    };
+
+    VPAIDCreative.prototype._trigger = function(eventName) {
+        if (this.events[eventName]) {
+            this.events[eventName]();
         }
-      }, 3000);
-
-      if (eventsCallbacks["AdStarted"]) eventsCallbacks["AdStarted"]();
     };
 
-    this.stopAd = function() {
-      state = "stopped";
-      if (eventsCallbacks["AdStopped"]) eventsCallbacks["AdStopped"]();
-    };
+    // === ГЕТТЕРЫ ===
+    VPAIDCreative.prototype.getAdLinear = function() { return this.isLinear; };
+    VPAIDCreative.prototype.getAdWidth = function() { return 300; };
+    VPAIDCreative.prototype.getAdHeight = function() { return 100; };
+    VPAIDCreative.prototype.getAdDuration = function() { return 15; };
+    VPAIDCreative.prototype.getAdRemainingTime = function() { return 10; };
+    VPAIDCreative.prototype.getAdVolume = function() { return this.adVolume; };
+    VPAIDCreative.prototype.setAdVolume = function(val) { this.adVolume = val; };
 
-    this.skipAd = function() {
-      this.stopAd();
-      if (eventsCallbacks["AdSkipped"]) eventsCallbacks["AdSkipped"]();
+    // Экспорт
+    window.getVPAIDAd = function() {
+        return new VPAIDCreative();
     };
-
-    this.resizeAd = function(width, height, viewMode) {};
-    this.pauseAd = function() { if (videoSlot) videoSlot.pause(); };
-    this.resumeAd = function() { if (videoSlot) videoSlot.play(); };
-    this.expandAd = function() {};
-    this.collapseAd = function() {};
-    this.getAdLinear = function() { return true; };
-    this.getAdWidth = function() { return 1280; };
-    this.getAdHeight = function() { return 720; };
-    this.getAdExpanded = function() { return false; };
-    this.getAdSkippableState = function() { return true; };
-    this.getAdRemainingTime = function() { return -1; };
-    this.getAdDuration = function() { return 30; };
-    this.getAdVolume = function() { return 1; };
-    this.setAdVolume = function(val) {};
-    this.subscribe = function(callback, eventName, context) {
-      eventsCallbacks[eventName] = callback.bind(context);
-    };
-    this.unsubscribe = function(eventName) {
-      delete eventsCallbacks[eventName];
-    };
-  }
-
-  window.getVPAIDAd = function() {
-    return new ShoppableVPAID();
-  };
 })();
