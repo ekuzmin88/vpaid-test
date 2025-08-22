@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VAST version="3.0">
+  <Ad id="shoppable-hybrid">
+    <InLine>
+      <AdSystem>Hybrid</AdSystem>
+      <AdTitle>Shoppable Hybrid VAST</AdTitle>
+      <Impression><![CDATA[https://tracking.hybrid.ai/impression]]></Impression>
+      <Creatives>
+        <Creative>
+          <Linear>
+            <Duration>00:00:30</Duration>
+            <MediaFiles>
+              <MediaFile delivery="progressive" type="video/mp4" width="640" height="360">
+                <![CDATA[https://content.hybrid.ai/mraid/shoppable_test/Lifestyle_30.mp4]]>
+              </MediaFile>
+              <MediaFile delivery="progressive" type="application/javascript" apiFramework="VPAID">
+                <![CDATA[https://ekuzmin88.github.io/vpaid-test/vast3.js]]>
+              </MediaFile>
+            </MediaFiles>
+            <AdParameters><![CDATA[
+              {
+                "TemplateElements":[
+                  { "_t":"ImageElementTemplate","StartTimeSec":3.6,"EndTimeSec":7.2,"X":531,"Y":100,"Height":120,"Width":120,"Source":"https://content.hybrid.ai/mraid/shoppable_test/1.png"},
+                  { "_t":"TextElementTemplate","StartTimeSec":3.6,"EndTimeSec":7.2,"X":406,"Y":250,"Text":"Товар 6","FontSize":24,"FontColor":"white"},
+                  { "_t":"TextElementTemplate","StartTimeSec":3.6,"EndTimeSec":7.2,"X":406,"Y":280,"Text":"1000₽","FontSize":20,"FontColor":"white"},
+                  
+                  { "_t":"ImageElementTemplate","StartTimeSec":7.3,"EndTimeSec":10.9,"X":531,"Y":100,"Height":120,"Width":120,"Source":"https://content.hybrid.ai/mraid/shoppable_test/2.png"},
+                  { "_t":"TextElementTemplate","StartTimeSec":7.3,"EndTimeSec":10.9,"X":406,"Y":250,"Text":"Товар 1","FontSize":24,"FontColor":"white"},
+                  { "_t":"TextElementTemplate","StartTimeSec":7.3,"EndTimeSec":10.9,"X":406,"Y":280,"Text":"2000₽","FontSize":20,"FontColor":"white"},
+                  
+                  { "_t":"ImageElementTemplate","StartTimeSec":11,"EndTimeSec":14.5,"X":531,"Y":100,"Height":120,"Width":120,"Source":"https://content.hybrid.ai/mraid/shoppable_test/3.png"},
+                  { "_t":"TextElementTemplate","StartTimeSec":11,"EndTimeSec":14.5,"X":406,"Y":250,"Text":"Товар 2","FontSize":24,"FontColor":"white"},
+                  { "_t":"TextElementTemplate","StartTimeSec":11,"EndTimeSec":14.5,"X":406,"Y":280,"Text":"3000₽","FontSize":20,"FontColor":"white"},
+                  
+                  { "_t":"ImageElementTemplate","StartTimeSec":18.6,"EndTimeSec":22.1,"X":531,"Y":100,"Height":120,"Width":120,"Source":"https://content.hybrid.ai/mraid/shoppable_test/4.png"},
+                  { "_t":"TextElementTemplate","StartTimeSec":18.6,"EndTimeSec":22.1,"X":406,"Y":250,"Text":"Товар 3","FontSize":24,"FontColor":"white"},
+                  { "_t":"TextElementTemplate","StartTimeSec":18.6,"EndTimeSec":22.1,"X":406,"Y":280,"Text":"4000₽","FontSize":20,"FontColor":"white"},
+                  
+                  { "_t":"ImageElementTemplate","StartTimeSec":22.2,"EndTimeSec":25.7,"X":531,"Y":100,"Height":120,"Width":120,"Source":"https://content.hybrid.ai/mraid/shoppable_test/5.png"},
+                  { "_t":"TextElementTemplate","StartTimeSec":22.2,"EndTimeSec":25.7,"X":406,"Y":250,"Text":"Товар 4","FontSize":24,"FontColor":"white"},
+                  { "_t":"TextElementTemplate","StartTimeSec":22.2,"EndTimeSec":25.7,"X":406,"Y":280,"Text":"5000₽","FontSize":20,"FontColor":"white"},
+                  
+                  { "_t":"ImageElementTemplate","StartTimeSec":25.8,"EndTimeSec":29.3,"X":531,"Y":100,"Height":120,"Width":120,"Source":"https://content.hybrid.ai/mraid/shoppable_test/6.png"},
+                  { "_t":"TextElementTemplate","StartTimeSec":25.8,"EndTimeSec":29.3,"X":406,"Y":250,"Text":"Товар 5","FontSize":24,"FontColor":"white"},
+                  { "_t":"TextElementTemplate","StartTimeSec":25.8,"EndTimeSec":29.3,"X":406,"Y":280,"Text":"6000₽","FontSize":20,"FontColor":"white"}
+                ]
+              }
+            ]]></AdParameters>
+          </Linear>
+        </Creative>
+      </Creatives>
+    </InLine>
+  </Ad>
+</VAST>
