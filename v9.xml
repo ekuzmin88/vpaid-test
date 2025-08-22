@@ -1,0 +1,69 @@
+<VAST version="4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Ad id="shoppable-vpaid">
+    <InLine>
+      <AdSystem version="1.0">Hybrid Shoppable VPAID</AdSystem>
+      <AdTitle>Shoppable VPAID Test</AdTitle>
+      <Impression><![CDATA[https://tracker.hybrid.ai/impression]]></Impression>
+
+      <Creatives>
+        <Creative>
+          <Linear>
+            <Duration>00:00:30</Duration>
+            <MediaFiles>
+              <!-- Основное видео -->
+              <MediaFile delivery="progressive" type="video/mp4" width="640" height="360" scalable="true" maintainAspectRatio="true">
+                <![CDATA[https://content.hybrid.ai/mraid/shoppable_test/Lifestyle_30.mp4]]>
+              </MediaFile>
+
+              <!-- Inline VPAID JS -->
+              <MediaFile apiFramework="VPAID" delivery="inline" type="application/javascript">
+                <![CDATA[
+                  (function() {
+                      var VPAIDCreative = function() {};
+                      VPAIDCreative.prototype.handshakeVersion = function(version) { return "2.0"; };
+                      VPAIDCreative.prototype.initAd = function(width, height, viewMode, desiredBitrate, creativeData, environmentVars) {
+                          if (this.eventCallback) this.eventCallback("AdLoaded");
+                          if (this.eventCallback) this.eventCallback("AdStarted");
+
+                          // Пример карточки товара
+                          var adContainer = environmentVars.slot || document.body;
+                          var overlay = document.createElement("div");
+                          overlay.style.position = "absolute";
+                          overlay.style.bottom = "20px";
+                          overlay.style.left = "20px";
+                          overlay.style.width = "300px";
+                          overlay.style.height = "120px";
+                          overlay.style.background = "rgba(0,0,0,0.7)";
+                          overlay.style.color = "#fff";
+                          overlay.style.fontSize = "16px";
+                          overlay.style.padding = "10px";
+                          overlay.innerHTML = "🔥 Тестовый товар<br><button style='margin-top:10px'>Купить</button>";
+                          adContainer.appendChild(overlay);
+                      };
+                      VPAIDCreative.prototype.startAd = function() {};
+                      VPAIDCreative.prototype.stopAd = function() { if (this.eventCallback) this.eventCallback("AdStopped"); };
+                      VPAIDCreative.prototype.subscribe = function(eventCallback, eventName, context) { this.eventCallback = eventCallback; };
+                      VPAIDCreative.prototype.unsubscribe = function() {};
+                      VPAIDCreative.prototype.resizeAd = function() {};
+                      VPAIDCreative.prototype.pauseAd = function() {};
+                      VPAIDCreative.prototype.resumeAd = function() {};
+                      VPAIDCreative.prototype.expandAd = function() {};
+                      VPAIDCreative.prototype.collapseAd = function() {};
+                      VPAIDCreative.prototype.getAdLinear = function() { return true; };
+                      VPAIDCreative.prototype.getAdExpanded = function() { return false; };
+                      VPAIDCreative.prototype.getAdSkippableState = function() { return false; };
+                      VPAIDCreative.prototype.getAdRemainingTime = function() { return 15; };
+                      VPAIDCreative.prototype.getAdDuration = function() { return 15; };
+                      VPAIDCreative.prototype.getAdVolume = function() { return 1.0; };
+                      VPAIDCreative.prototype.setAdVolume = function(val) {};
+                      window.getVPAIDAd = function() { return new VPAIDCreative(); };
+                  })();
+                ]]>
+              </MediaFile>
+            </MediaFiles>
+          </Linear>
+        </Creative>
+      </Creatives>
+    </InLine>
+  </Ad>
+</VAST>
