@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winline banner</title>
+    <script src="mraid.js"></script>
+    <script>
+        const showMatches = {
+            "sport": "Футбол",
+            "mode": "main",
+            "numberOfMatchesToShow": "9",
+            "teamsList": ["Эвертон", "Манчестер Юнайтед", "Фейеноорд", "Брюгге", "Арсенал", "Реал М", "Манчестер Сити", "Бавария", "ПСЖ", "Барселона", "Ливерпуль", "Челси", "Интер М", "Милан",
+                "Атлетико Мадрид", "Боруссия Д", "Ювентус", "Рома", "Наполи", "Лейпциг", "Бенфика", "Порту", "ПСВ Эйндховен",
+                "Тоттенхэм", "Аякс", "Лацио", "Шальке", "Севилья", "Вильярреал", "Реал Сосьедад", "Байер Леверкузен", "Фейеноорд",
+                "Рейнджерс", "Селтик", "Монако", "Лион", "Шахтер Донецк", "Спортинг Лиссабон", "Зенит",
+                "Галатасарай", "Фенербахче", "Олимпиакос", "Айнтрахт Франкфурт", "Боруссия М", "Марсель", "Брага",
+                "Копенгаген", "Панатинаикос", "Генк", "Рапид Вена", "Славия Прага", "Стяуа (ФКСБ)", "Црвена Звезда"],
+            "videoSrc": "https://content.hybrid.ai/mraid/winline_playable_v2/assets/video.mp4"
+        }
+    </script>
+    <link rel="prefetch" href="https://content.hybrid.ai/mraid/winline_playable_v2/assets/btn-get.png" />
+    <link rel="prefetch" href="https://content.hybrid.ai/mraid/winline_playable_v2/assets/cybersport_bg.jpg" />
+    <link rel="prefetch" href="https://content.hybrid.ai/mraid/winline_playable_v2/assets/football_bg.jpg" />
+    <link rel="prefetch" href="https://content.hybrid.ai/mraid/winline_playable_v2/assets/hokkey_bg.jpg" />
+    <link rel="prefetch" href="https://content.hybrid.ai/mraid/winline_playable_v2/assets/picture_fishka.png" />
+    <link rel="prefetch" href="https://content.hybrid.ai/mraid/winline_playable_v2/assets/txt-top-orange.svg" />
+    <link rel="prefetch" href="https://content.hybrid.ai/mraid/winline_playable_v2/assets/txt-white.svg" />
+    <link rel="prefetch" href="https://content.hybrid.ai/mraid/winline_playable_v2/assets/winline_logo.png" />
+    <link rel="prefetch" href="https://content.hybrid.ai/mraid/winline_playable_v2/assets/left_arrow.png" />
+    <link rel="prefetch" href="https://content.hybrid.ai/mraid/winline_playable_v2/assets/right_arrow.png" />
+
+    <style>
+        @font-face {
+            font-family: Whitney-medium;
+            src: url("https://content.hybrid.ai/mraid/winline_playable_v2/fonts/Whitney-Medium.ttf");
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            background-image: url("https://content.hybrid.ai/mraid/winline_playable_v2/assets/football_bg.jpg");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+
+
+
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .top-orange {
+            width: 87.5%;
+            height: 13rem;
+            background-color: #FF6A13;
+            box-shadow: 0px 2px 5px 1px #20202033;
+            border: 1px solid #FFFFFF33;
+            border-radius: 2rem;
+            position: relative;
+            z-index: 3;
+
+            min-width: 26rem;
+
+            margin-top: 2rem;
+
+            display: flex;
+            align-items: center;
+
+        }
+
+        .top-orange__left {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .top-orange__right {
+            display: flex;
+            justify-content: end;
+
+        }
+
+        .top-orange__logo {
+            width: 48%;
+            max-width: 17rem;
+        }
+
+        .top-orange__txt {
+            width: 76%;
+        }
+
+        .top-orange__fishka {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0.6rem;
+            width: 50%;
+            max-width: 12rem;
+
+        }
+
+        .top-white {
+            width: 78.7%;
+            height: 6.8rem;
+            background-color: #FFFFFF;
+            box-shadow: 0px 4px 6px 0px #2020204D;
+            border: 1px solid #0000000D;
+            border-radius: 1rem;
+
+            position: relative;
+            top: -3rem;
+            min-width: 22rem;
+            padding: 0.5rem;
+            z-index: 2;
+        }
+
+        .top-white__txt {
+            position: absolute;
+            bottom: 1rem;
+
+            width: 66%;
+            max-width: 21rem;
+        }
+
+        .top-white__sport {
+            position: absolute;
+            bottom: 0rem;
+            right: 0.5rem;
+            padding: 0.2rem 1rem;
+
+            display: inline-block;
+            color: #FFFFFF;
+            background-color: #000000;
+            font-size: 1rem;
+
+            font-family: Whitney-Medium;
+            font-size: 0.9rem;
+
+            line-height: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .custom-carousel {
+            overflow: hidden;
+            position: absolute;
+            top: 57%;
+            left: 50%;
+            transform: translate(-50%, -57%);
+            z-index: 2;
+            width: 100vw;
+        }
+
+        .custom-carousel-inner {
+            position: relative;
+            width: 100%;
+            height: 25.3rem;
+
+            display: flex;
+            /* ➤ enables horizontal layout */
+            transition: transform 0.4s ease-in-out;
+            /* ➤ smooth sliding */
+            will-change: transform;
+            /* ➤ performance optimization */
+        }
+
+        .custom-carousel-slide {
+            flex: 0 0 100%;
+            /* ➤ each slide takes full carousel width */
+            max-width: 100%;
+            height: 100%;
+            /* match carousel-inner height */
+        }
+
+        /* .custom-carousel-slide {
+                flex: 0 0 100%;
+                max-width: 100%;
+            } */
+
+        /* .custom-carousel-slide {
+                display: none;
+                width: 100%;
+            } */
+
+        .custom-carousel-slide.active {
+            display: block;
+        }
+
+        .custom-carousel-indicators {
+            gap: 0.5rem;
+            margin-bottom: 0.4rem;
+            position: absolute;
+            bottom: 0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+        }
+
+        .custom-carousel-indicator {
+            width: 3.5rem;
+            height: 0.8rem;
+            background: #fff;
+            opacity: 0.5;
+            border: none;
+            cursor: pointer;
+
+            border-top: none;
+            border-bottom: none;
+            border-radius: 0.4rem;
+
+        }
+
+        .custom-carousel-indicator.active {
+            background: rgba(255, 106, 19, 1);
+            opacity: 1;
+        }
+
+        .slide-content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+
+        .block-sport {
+            height: 12.5%;
+            width: 87.5%;
+            background-color: rgba(255, 255, 255, 1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .block-sport__right {
+            display: flex;
+            flex: 1 1 0;
+            justify-content: space-evenly;
+            height: 100%;
+        }
+
+        .block-sport__left {
+            margin-left: 1rem;
+            flex: 1 1 0;
+            padding: 0.5rem;
+        }
+
+        .block-sport__left p {
+            margin-bottom: 0.3rem;
+
+            font-family: 'Whitney-Medium';
+
+            font-size: 1.2rem;
+            font-weight: bold;
+            line-height: 1.5rem;
+        }
+
+        .block-sport__left-date {
+            background-color: rgba(255, 106, 19, 1);
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            color: rgba(255, 255, 255, 1);
+
+
+            font-family: Whitney-Medium;
+            font-size: 0.9rem !important;
+            font-weight: normal !important;
+            line-height: 1rem !important;
+        }
+
+        .block-sport__right-coef {
+            width: 44%;
+            height: 5rem;
+            background-color: rgba(238, 243, 246, 1);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0.4rem;
+
+
+            font-family: Whitney-Medium;
+            font-size: 1.4rem;
+            line-height: 1.8rem;
+            font-weight: normal;
+            color: #444444
+        }
+
+        .carousel-control {
+            background: none;
+            border: none;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3.4rem;
+            height: 7rem;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        .carousel-control-prev {
+            left: 0;
+            background-image: url("https://content.hybrid.ai/mraid/winline_playable_v2/assets/left_arrow.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+
+            display: none;
+        }
+
+        .carousel-control-next {
+            right: 0;
+            background-image: url("https://content.hybrid.ai/mraid/winline_playable_v2/assets/right_arrow.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+
+            display: none;
+        }
+
+        .carousel-control.disabled-opacity {
+            opacity: 0.3;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .fr {
+            margin-top: 2.3rem;
+        }
+
+
+        .carousel-indicators .active {
+            background-color: rgba(255, 106, 19, 1) !important;
+        }
+
+        .opacity-disabled {
+            opacity: 0.5 !important;
+            pointer-events: none;
+        }
+
+        .main__btn {
+            position: absolute;
+            bottom: 0.5rem;
+            width: 91%;
+            max-width: 70rem;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+
+        /* a maximum width of 320px */
+        @media (max-width: 320px) {
+
+
+            .custom-carousel {
+
+                top: 62%;
+
+                transform: translate(-50%, -50%);
+
+            }
+
+            /* .carousel-indicators {
+                    margin-bottom: 0.1rem !important;
+    
+                } */
+
+            .main__btn {
+
+                bottom: 0.3rem;
+
+            }
+
+            .top-orange {
+                margin-top: 1.5rem;
+            }
+
+            .top-white {
+                margin-bottom: 1rem;
+            }
+
+            .custom-carousel-indicators {
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        .video__container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 100;
+            background-color: #c6c6c6;
+            opacity: 1;
+        }
+
+        .video__element {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            transform: translate(-50%, -50%);
+        }
+
+
+
+        @keyframes fade-out {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column align-items-center">
+    <div class="top-orange">
+        <div class="top-orange__left">
+            <img class="top-orange__logo"
+                src="https://content.hybrid.ai/mraid/winline_playable_v2/assets/winline_logo.png" alt="">
+            <img class="top-orange__txt"
+                src="https://content.hybrid.ai/mraid/winline_playable_v2/assets/txt-top-orange.svg" alt="">
+        </div>
+
+        <img class="top-orange__fishka"
+            src="https://content.hybrid.ai/mraid/winline_playable_v2/assets/picture_fishka.png" alt="">
+
+    </div>
+    <div class="top-white">
+        <img class="top-white__txt" src="https://content.hybrid.ai/mraid/winline_playable_v2/assets/txt-white.svg"
+            alt="">
+        <p class="top-white__sport">Киберспорт</p>
+    </div>
+    <div id="customCarousel" class="custom-carousel">
+        <div class="custom-carousel-indicators"></div>
+        <div class="custom-carousel-inner" id="carouselInner"></div>
+        <button class="carousel-control carousel-control-prev" id="carouselPrev" type="button"
+            aria-label="Previous"></button>
+        <button class="carousel-control carousel-control-next" id="carouselNext" type="button"
+            aria-label="Next"></button>
+    </div>
+    <img class="main__btn" src="https://content.hybrid.ai/mraid/winline_playable_v2/assets/btn-get.png" alt="">
+    <div class="video__container" id="videoContainer">
+        <video class="video__element" id="videoElement" autoplay muted playsinline preload="metadata"></video>
+    </div>
+
+
+    <script>
+        let sportWinline;
+
+        const urls = new Map([
+            ["main", "https://test-feeds.hybe.io/prematch.json"],
+            ["live", "https://test-feeds.hybe.io/live.json"],
+        ]);
+
+        const backgroundImg = new Map([
+            ["Киберспорт", "https://content.hybrid.ai/mraid/winline_playable_v2/assets/cybersport_bg.jpg"],
+            ["Хоккей", "https://content.hybrid.ai/mraid/winline_playable_v2/assets/hokkey_bg.jpg"],
+            ["Футбол", "https://content.hybrid.ai/mraid/winline_playable_v2/assets/football_bg.jpg"],
+        ])
+
+
+        function initialScreen() {
+            const videoElement = document.getElementById("videoElement");
+            const videoContainer = document.getElementById("videoContainer");
+
+            document.querySelector(".top-white__sport").textContent = showMatches.sport;
+            document.body.style.backgroundImage = `url('${backgroundImg.get(showMatches.sport)}')`;
+
+            // Устанавливаем источник видео только один раз
+            if (!videoElement.src) {
+                videoElement.src = showMatches.videoSrc;
+            }
+
+            // Убираем контейнер после завершения видео
+            videoElement.addEventListener("ended", () => {
+                videoContainer.style.display = "none";
+            });
+
+            // Принудительное воспроизведение при взаимодействии на мобильных устройствах
+            document.addEventListener("touchstart", function () {
+                if (videoElement.paused) {
+                    videoElement.play();
+                }
+            }, { once: true });
+        }
+
+        initialScreen();
+
+
+        // Main function to process matches
+        async function processMatches() {
+            let matches = [];
+            try {
+                const data = await fetchMatches(showMatches.mode);
+                matches = findMatchesForTeams(data.Country, showMatches.teamsList, matches);
+
+                if (showMatches.mode === "live" && matches.length === 0) {
+                    const data = await fetchMatches("main");
+                    matches = findMatchesForTeams(data.Country, showMatches.teamsList, matches);
+                }
+
+                const shuffledMatches = shuffleArray(matches);
+
+                const numberOfMatches = showMatches.numberOfMatchesToShow || shuffledMatches.length;
+                displayMatches(shuffledMatches.slice(0, numberOfMatches));
+
+            } catch (error) {
+                throw error;
+            }
+        }
+
+        processMatches();
+
+        function displayMatches(matches) {
+            const matchesPerSlide = 3;
+            const carouselInner = document.getElementById("carouselInner");
+            const indicatorsContainer = document.querySelector(".custom-carousel-indicators");
+
+            const nextBtn = document.querySelector(".carousel-control-prev");
+            const prevBtn = document.querySelector(".carousel-control-next");
+
+            carouselInner.innerHTML = "";
+            indicatorsContainer.innerHTML = "";
+
+            const slides = [];
+            for (let i = 0; i < matches.length; i += matchesPerSlide) {
+                slides.push(matches.slice(i, i + matchesPerSlide));
+            }
+
+            if (slides.length <= 1) {
+                document.getElementById("carouselPrev").style.display = "none";
+                document.getElementById("carouselNext").style.display = "none";
+                indicatorsContainer.style.display = "none";
+                nextBtn.style.display = "none";
+                prevBtn.style.display = "none";
+            } else {
+                document.getElementById("carouselPrev").style.display = "";
+                document.getElementById("carouselNext").style.display = "";
+                indicatorsContainer.style.display = "flex";
+                nextBtn.style.display = "block";
+                prevBtn.style.display = "block";
+            }
+
+            slides.forEach((slideMatches, slideIndex) => {
+                const slide = document.createElement("div");
+                slide.className = "custom-carousel-slide";
+
+                const matchesHTML = slideMatches.map((match, index) => {
+                    const matchDate = new Date(match.matchdate);
+                    const now = new Date();
+                    const tomorrow = new Date();
+                    tomorrow.setDate(now.getDate() + 1);
+
+                    const isSameDay = (d1, d2) =>
+                        d1.getDate() === d2.getDate() &&
+                        d1.getMonth() === d2.getMonth() &&
+                        d1.getFullYear() === d2.getFullYear();
+
+                    let formattedDate = "";
+                    if (isSameDay(matchDate, now)) {
+                        formattedDate = `Сегодня, ${matchDate.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}`;
+                    } else if (isSameDay(matchDate, tomorrow)) {
+                        formattedDate = `Завтра, ${matchDate.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}`;
+                    } else {
+                        const day = matchDate.getDate();
+                        const month = matchDate.toLocaleString('ru-RU', { month: 'long' });
+                        const weekday = matchDate.toLocaleString('ru-RU', { weekday: 'short' });
+                        const hours = matchDate.getHours().toString().padStart(2, '0');
+                        const minutes = matchDate.getMinutes().toString().padStart(2, '0');
+                        formattedDate = `${day} ${month}, ${weekday.charAt(0).toUpperCase() + weekday.slice(1)}, ${hours}:${minutes}`;
+                    }
+
+                    const frClass = index === 0 ? 'fr' : '';
+                    const odd1 = Array.isArray(match.line) ? match.line[0]["odd1"] : match.line["odd1"];
+                    const odd3 = Array.isArray(match.line) ? match.line[0]["odd3"] : match.line["odd3"];
+
+                    return `
+                <div class="block-sport ${frClass}">
+                    <div class="block-sport__left">
+                        <p class="block-sport__left-team1">${match.team1}</p>
+                        <p class="block-sport__left-team2">${match.team2}</p>
+                        <p class="block-sport__left-date">${formattedDate}</p>
+                    </div>
+                    <div class="block-sport__right">
+                        <div class="block-sport__right-coef">${odd1 || "-"}</div>
+                        <div class="block-sport__right-coef">${odd3 || "-"}</div>
+                    </div>
+                </div>
+            `;
+                }).join('');
+
+                slide.innerHTML = `<div class="slide-content">${matchesHTML}</div>`;
+                carouselInner.appendChild(slide);
+
+                const indicator = document.createElement("button");
+                indicator.className = "custom-carousel-indicator";
+                if (slideIndex === 0) indicator.classList.add("active");
+                indicator.dataset.slideTo = slideIndex;
+                indicatorsContainer.appendChild(indicator);
+            });
+
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+
+
+            function showSlide(index) {
+                const carouselInner = document.querySelector(".custom-carousel-inner");
+                const indicatorButtons = document.querySelectorAll(".custom-carousel-indicator");
+
+                const offset = index * -100;
+                carouselInner.style.transform = `translateX(${offset}%)`;
+
+                indicatorButtons.forEach((btn, i) => {
+                    btn.classList.toggle("active", i === index);
+                });
+
+                currentSlide = index;
+                updateNavButtons();
+            }
+
+            function updateNavButtons() {
+                const prevBtn = document.getElementById("carouselPrev");
+                const nextBtn = document.getElementById("carouselNext");
+
+                if (currentSlide === 0) {
+                    prevBtn.classList.add("disabled-opacity");
+                } else {
+                    prevBtn.classList.remove("disabled-opacity");
+                }
+
+                if (currentSlide === totalSlides - 1) {
+                    nextBtn.classList.add("disabled-opacity");
+                } else {
+                    nextBtn.classList.remove("disabled-opacity");
+                }
+
+            }
+
+            document.getElementById("carouselPrev").onclick = () => {
+                if (currentSlide > 0) showSlide(currentSlide - 1);
+            };
+
+            document.getElementById("carouselNext").onclick = () => {
+                if (currentSlide < totalSlides - 1) showSlide(currentSlide + 1);
+            };
+
+            document.querySelectorAll(".custom-carousel-indicator").forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    showSlide(parseInt(btn.dataset.slideTo));
+                });
+            });
+
+            showSlide(0);
+        }
+
+        async function fetchMatches(mode) {
+            try {
+                const response = await fetch(urls.get(mode));
+                if (!response.ok) {
+                    throw new Error(`status: ${response.status}`);
+                }
+
+                const xmlString = await response.text();
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlString, "application/xml");
+                const jsonObject = xmlToJson(xmlDoc);
+                sportWinline = jsonObject.Winline?.Sport;
+
+                if (!sportWinline) {
+                    throw new Error('Sport not found in the response.');
+                }
+
+                return getSportObj(showMatches.sport);
+            } catch (error) {
+                throw error;
+            }
+        }
+
+        function xmlToJson(xml) {
+            let obj = {};
+
+            if (xml.attributes) {
+                for (let i = 0; i < xml.attributes.length; i++) {
+                    const attribute = xml.attributes[i];
+                    obj[`${attribute.name.toLowerCase()}`] = attribute.value;
+                }
+            }
+
+            if (xml.hasChildNodes()) {
+                for (let i = 0; i < xml.childNodes.length; i++) {
+                    const item = xml.childNodes[i];
+                    const nodeName = item.nodeName;
+                    if (item.nodeType === 3) { // Text node
+                        const textContent = item.nodeValue.trim();
+                        if (textContent) {
+                            obj['#text'] = textContent;
+                        }
+                    } else {
+                        if (typeof (obj[nodeName]) === "undefined") {
+                            obj[nodeName] = xmlToJson(item);
+                        } else {
+                            if (Array.isArray(obj[nodeName])) {
+
+                                obj[nodeName].push(xmlToJson(item));
+                            } else {
+                                const old = obj[nodeName];
+                                obj[nodeName] = [];
+                                obj[nodeName].push(old);
+                                obj[nodeName].push(xmlToJson(item));
+                            }
+                        }
+                    }
+                }
+            }
+            return obj;
+        }
+
+        function getSportObj(sport) {
+            let correctSport = sportWinline.filter(el => el.name === sport)[0];
+            return correctSport;
+        }
+
+        function findMatchByName(obj, teamName) {
+            for (const country of obj) {
+                const tournaments = country.Tournament;
+
+                if (Array.isArray(tournaments)) {
+                    for (const tournament of tournaments) {
+                        if (tournament.Match && Array.isArray(tournament.Match)) {
+                            for (const match of tournament.Match) {
+                                if (match.team1 === teamName || match.team2 === teamName) {
+                                    return match;
+                                }
+                            }
+                        }
+                    }
+                } else if (tournaments && typeof tournaments === 'object') {
+                    if (tournaments.Match && Array.isArray(tournaments.Match)) {
+                        for (const match of tournaments.Match) {
+                            if (match.team1 === teamName || match.team2 === teamName) {
+                                return match;
+                            }
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        function shuffleArray(array) {
+            let shuffled = array.slice();
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function findMatchesForTeams(countryData, teamsList, arr) {
+            teamsList.forEach(team => {
+                const match = findMatchByName(countryData, team);
+                if (match) arr.push(match);
+            });
+            return arr;
+        }
+
+        //adding click 
+        document.body.addEventListener("click", function (event) {
+            if (!event.target.closest(".carousel-control-prev") && !event.target.closest(".carousel-control-next") && !event.target.closest(".custom-carousel-indicators")) {
+                mraid.open("", "_blank");
+            }
+        });
+    </script>
+</body>
+
+</html>
