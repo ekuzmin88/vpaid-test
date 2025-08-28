@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VAST version="4.1">
+  <Ad id="lifestyle-30">
+    <InLine>
+      <AdSystem>Hybe</AdSystem>
+      <AdTitle>Lifestyle 30s</AdTitle>
+
+      <Impression><![CDATA[https://tracking.example.com/impression]]></Impression>
+
+      <Creatives>
+        <!-- Linear видео -->
+        <Creative id="video-1" sequence="1">
+          <UniversalAdId idRegistry="unknown">unknown</UniversalAdId>
+          <Linear>
+            <Duration>00:00:30</Duration>
+            <TrackingEvents>
+              <Tracking event="start"><![CDATA[https://tracking.example.com/start]]></Tracking>
+              <Tracking event="firstQuartile"><![CDATA[https://tracking.example.com/25]]></Tracking>
+              <Tracking event="midpoint"><![CDATA[https://tracking.example.com/50]]></Tracking>
+              <Tracking event="thirdQuartile"><![CDATA[https://tracking.example.com/75]]></Tracking>
+              <Tracking event="complete"><![CDATA[https://tracking.example.com/100]]></Tracking>
+            </TrackingEvents>
+            <VideoClicks>
+              <ClickThrough><![CDATA[https://example.com]]></ClickThrough>
+            </VideoClicks>
+            <MediaFiles>
+              <MediaFile id="mf_main" delivery="progressive" type="video/mp4" width="1920" height="1080" bitrate="2000">
+                <![CDATA[https://content.hybrid.ai/mraid/shoppable_test/Lifestyle_30.mp4]]>
+              </MediaFile>
+            </MediaFiles>
+          </Linear>
+
+          <!-- SIMID интерактивный слой -->
+          <CreativeExtensions>
+            <CreativeExtension type="InteractiveCreativeFile">
+              <InteractiveCreativeFile type="text/html" apiFramework="SIMID" variableDuration="true">
+                <![CDATA[https://content.hybrid.ai/mraid/shoppable_test/simid_interactive.html]]>
+                <AdParameters xmlEncoded="false"><![CDATA[
+{"base":"https://content.hybrid.ai/mraid/shoppable_test/","cols":3,"rows":2,"n":6,"title":"Выбирайте и сканируйте"}
+                ]]></AdParameters>
+              </InteractiveCreativeFile>
+            </CreativeExtension>
+          </CreativeExtensions>
+        </Creative>
+
+        <!-- Companion как статический фолбэк -->
+        <Creative id="companion-fallback">
+          <UniversalAdId idRegistry="unknown">unknown</UniversalAdId>
+          <CompanionAds>
+            <Companion id="c-1920x1080" width="1920" height="1080" assetWidth="1920" assetHeight="1080">
+              <StaticResource creativeType="image/png"><![CDATA[https://content.hybrid.ai/mraid/shoppable_test/companion_fallback_1920x1080.png]]></StaticResource>
+              <CompanionClickThrough><![CDATA[https://hybe.shop/tv?cid=6819]]></CompanionClickThrough>
+              <CompanionClickTracking><![CDATA[https://tracking.example.com/companion-click]]></CompanionClickTracking>
+            </Companion>
+          </CompanionAds>
+        </Creative>
+      </Creatives>
+    </InLine>
+  </Ad>
+</VAST>
