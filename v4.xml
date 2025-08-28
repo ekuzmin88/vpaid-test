@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VAST version="4.1">
+  <Ad id="lifestyle-30">
+    <InLine>
+      <AdSystem version="1.0">Hybe</AdSystem>
+      <AdTitle>Lifestyle 30s</AdTitle>
+      <Impression><![CDATA[https://tracking.example.com/impression]]></Impression>
+
+      <Creatives>
+        <Creative id="video-1" sequence="1">
+          <Linear>
+            <Duration>00:00:30</Duration>
+            <TrackingEvents>
+              <Tracking event="start"><![CDATA[https://tracking.example.com/start]]></Tracking>
+              <Tracking event="firstQuartile"><![CDATA[https://tracking.example.com/25]]></Tracking>
+              <Tracking event="midpoint"><![CDATA[https://tracking.example.com/50]]></Tracking>
+              <Tracking event="thirdQuartile"><![CDATA[https://tracking.example.com/75]]></Tracking>
+              <Tracking event="complete"><![CDATA[https://tracking.example.com/100]]></Tracking>
+            </TrackingEvents>
+            <VideoClicks>
+              <ClickThrough><![CDATA[https://example.com]]></ClickThrough>
+            </VideoClicks>
+            <MediaFiles>
+              <MediaFile delivery="progressive" type="video/mp4" width="1920" height="1080" bitrate="2000">
+                <![CDATA[https://content.hybrid.ai/mraid/shoppable_test/Lifestyle_30.mp4]]>
+              </MediaFile>
+            </MediaFiles>
+          </Linear>
+        </Creative>
+
+        <Creative id="companion-1">
+          <CompanionAds>
+            <Companion id="c-1280x720" width="1280" height="720" assetWidth="1280" assetHeight="720" expandedWidth="1280" expandedHeight="720">
+              <!-- Основной путь -->
+              <IFrameResource>
+                <![CDATA[https://content.hybrid.ai/mraid/shoppable_test/companion_grid_assets.html?base=https%3A%2F%2Fcontent.hybrid.ai%2Fmraid%2Fshoppable_test%2F&cols=3&rows=2&n=6&title=%D0%92%D1%8B%D0%B1%D0%B8%D1%80%D0%B0%D0%B9%D1%82%D0%B5%20%D0%B8%20%D1%81%D0%BA%D0%B0%D0%BD%D0%B8%D1%80%D1%83%D0%B9%D1%82%D0%B5]]>
+              </IFrameResource>
+              <!-- Фоллбэк -->
+              <StaticResource creativeType="image/png">
+                <![CDATA[https://content.hybrid.ai/mraid/shoppable_test/companion_fallback_1280x720.png]]>
+              </StaticResource>
+              <CompanionClickThrough><![CDATA[https://hybe.shop/tv?cid=6819]]></CompanionClickThrough>
+              <CompanionClickTracking><![CDATA[https://tracking.example.com/companion-click]]></CompanionClickTracking>
+            </Companion>
+          </CompanionAds>
+        </Creative>
+      </Creatives>
+    </InLine>
+  </Ad>
+</VAST>
